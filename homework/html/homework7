@@ -1,0 +1,21 @@
+var text = "Name:Mark,Age:18,Weight:80,Email:mark1122@gmail.com"
+ let re = /[0-9a-z]+/g
+ let re2 = /[\w/@/.]+/g
+ let re2A = /\w+[/@/.]+\w+([/./\w]+)/g 
+ let re3 = /:\w+/g
+ console.log( text.match(re))
+ console.log(text.match(re2))
+ console.log(text.match(re2A))
+ console.log(text.match(re3))
+
+ let m;
+ let array_re4 = []
+ var count = 0
+ while((m=re3.exec(text))!=null) // m = (re3.exec()!=null)
+ {
+    console.log('m=', m)
+    array_re4[count]=m[1];
+    count++;
+ }
+
+console.log(array_re4)
