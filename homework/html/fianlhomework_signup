@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Sign In</title>
+        <style>
+            .interface
+            {
+	            text-align:center;
+                border:5px blue solid;
+                padding:15px 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <section class="interface">
+            <div class="panel" id="signup">
+                <h1>Sign In</h1>
+                <p>Username       :<input type="text" name="username"  placeholder="Sign up your username"></p>
+                <p>Account        :<input type="text" name="account"   placeholder="_ @ _ .com"           ></p>
+                <p>Password       :<input type="text" name="password"  placeholder=""                     ></p>
+                <p>Phone number   :<input type="text" name="phone"     placeholder=""                     ></p>
+                <p>Your birthday  :<input type="text" name="birthday"  placeholder="EX:19920318"          ></p>
+                <p>I agree<input type="checkbox"><a href="#/term/"></a></p>
+                <p><input type="button" value="Sign up" onclick="save()"></p>
+            </div>
+        </section>
+        <script>
+            let users = []
+            function save()
+            {
+                var name     = document.querySelectorAll("username").values
+                var account  = document.querySelectorAll("account").values
+                var password = document.querySelectorAll("password").values
+                var phone    = document.querySelectorAll("phone").values
+                var birthday = document.querySelectorAll("birthday").values
+                users.push({username:name , account:account , password:password , phonenumber:phone , birthday:birthday})
+                window.location.hash = "/#login/"
+            }
+            </script>    
+    </body>
+</html>
