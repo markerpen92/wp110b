@@ -13,6 +13,13 @@
 
     <body>
         <section class="interface">
+            <div class="panel" id="login">
+                <h1>Login</h1>
+                <p>Account  :<input type="text" name="loginaccount" ></p>
+                <p>Password :<input type="text" name="loginpassword"></p>
+                <p><input type="button" value="Login"  ></p>
+                <p><input type="button" value="Sign_up" onclick="/#signup/"></p>
+            </div>
             <div class="panel" id="signup">
                 <h1>Sign In</h1>
                 <p>Username       :<input type="text" name="username"  placeholder="Sign up your username"></p>
@@ -22,13 +29,6 @@
                 <p>Your birthday  :<input type="text" name="birthday"  placeholder="EX:19920318"          ></p>
                 <p>I agree<input type="checkbox"><a href="#/term/"></a></p>
                 <p><input type="button" value="Sign up" onclick="save()"></p>
-            </div>
-            <div class="panel" id="login">
-                <h1>Login</h1>
-                <p>Account  :<input type="text" name="loginaccount" ></p>
-                <p>Password :<input type="text" name="loginpassword"></p>
-                <p><input type="button" value="Login"  ></p>
-                <p><input type="button" value="Sign_up" onclick="/#signup/"></p>
             </div>
             <div class="panel" id="term">
                 <h1>terms of service</h1>
@@ -53,7 +53,7 @@
                 window.location.hash = "/#login/"
             }
             window.onload = function(){
-                window.location.hash="/#login/"
+                show(login)
             }
             </script>    
     </body>
