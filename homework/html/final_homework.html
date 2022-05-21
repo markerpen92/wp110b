@@ -2,7 +2,7 @@
     <head>
         <title>Sign In</title>
         <style>
-            .interface
+            interface
             {
 	            text-align:center;
                 border:5px blue solid;
@@ -12,47 +12,52 @@
     </head>
 
     <body>
-        <div class="interface">
-            <h1>Sign In</h1>
-            <p>
-                Username :
-                <input type="text" name="username" value="" placeholder="Sign up your username"> 
-            </p>
-
-            <p>
-                Account  :
-                <input type="text" name="account" value="" placeholder="_ @ _ .com">
-            </p>
-
-            <p>
-                Password :
-                <input type="text" name="password" value="" placeholder="">
-            </p>
-
-            <p>
-                Check password:
-                <input type="text" value="" placeholder="Check your password">
-            </p>
-
-            <p>
-                Phone number :
-                <input type="text" value="" placeholder="">
-            </p>
-
-            <p>
-                Your birthday :
-                <input type="text" placeholder="EX:19920318">
-            </p>
-
-            <p>
-                <input type="checkbox">
-                I agree
-            </p>
-
-            <p>
-                <input type="button" value="Sign up">
-            </p>
-        </div>
-        
+        <section id="interface">
+            <div class="panel" id="signup">
+                <h1>Sign In</h1>
+                <p>Username       :<input type="text" name="username"  placeholder="Sign up your username"></p>
+                <p>Account        :<input type="text" name="account"   placeholder="_ @ _ .com"           ></p>
+                <p>Password       :<input type="text" name="password"  placeholder=""                     ></p>
+                <p>Phone number   :<input type="text" name="phone"     placeholder=""                     ></p>
+                <p>Your birthday  :<input type="text" name="birthday"  placeholder="EX:19920318"          ></p>
+                <p>I agree<input type="checkbox"><a href="#/terms/"</p>
+                <p><input type="button" value="Sign up" onclick="save()"></p>
+            </div>
+            <div class="panel" id="login">
+                <h1>Login</h1>
+                <p>Account  :<input type="text" name="loginaccount" ></p>
+                <p>Password :<input type="text" name="loginpassword"></p>
+                <p><input type="button" value="Login"  ></p>
+                <p><input type="button" value="Sign_up"></p>
+            </div>
+            <div class="panel" id="term">
+                <h1>terms of service</h1>
+                <p>NOTHING</p>
+            </div>
+        </section>
+        <script>
+            var username = document.querySelector(username)
+            var account  = document.querySelector(account)
+            var password = document.querySelector(password)
+            var phone    = document.querySelector(phone)
+            var birthday = document.querySelector(birthday)
+            let users    = []
+            var user_counter = 0
+            class user
+            {
+                constructor(name,account,password,phone,birthday)
+            }
+            function save(username,account,password,phone,birthday)
+            {
+                users[user_counter] = new user(username,account,password,phone,birthday)
+                user_counter++
+                show("login")
+            }
+            function show(id)
+            {
+                document.querySelectorAll('signup').forEach((node) => node.style.display='none')
+                document.getElementById(id).style.display = 'block'
+            }
+        </script>    
     </body>
 </html>
