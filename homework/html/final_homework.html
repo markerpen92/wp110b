@@ -40,7 +40,7 @@
             function show(id)
             {
                 doucument.querySelectorAll(".panel").forEach((node) => node.style.display = "non")
-                doucument.querySelectorAll(id).style.display = "block"    
+                doucument.getElementById(id).style.display = "block"    
             }
             let users = []
             function save()
