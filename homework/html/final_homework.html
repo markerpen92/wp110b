@@ -2,7 +2,7 @@
     <head>
         <title>Sign In</title>
         <style>
-            .interface
+            body
             {
 	            text-align:center;
                 border:5px blue solid;
@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <section class="interface">
+        <section>
             <div class="panel" id="login">
                 <h1>Login</h1>
                 <p>Account  :<input type="text" name="loginname" ></p>
@@ -40,7 +40,7 @@
             function show(id)
             {
                 doucument.querySelectorAll(".panel").forEach((node) => node.style.display = "non")
-                doucument.getElementById(id).style.display = "block"    
+                doucument.querySelectorAll(id).style.display = "block"    
             }
             let users = []
             function save()
@@ -77,25 +77,25 @@
             function signup(){ show("signup") }
             function terms(){}
             let routmap = [
-                [/^\/?login\/(\w+)\/?$/  , login],
-                [/^\/?signup\/(\w+)\/?$/ , signup],
+                [/^\/?login\/(\w+)\/?$/  , login]
+                [/^\/?signup\/(\w+)\/?$/ , signup]
                 [/^\/?afterlogin\/(\w+)\/?$/ , afterlogin]
                 [/^\/?terms\/(\w+)\/?$/ , terms]
-            ]          
+            ]
+            window.onload = function(){
+                login()
+            }
             window.onhashchange = function(){
                 var hash=window.location.hash.trim().substring(1)
-                for(let [rout,f] of routmap)
+                for(let [rout,f] in routmap)
                 {
                     m=hash.match(rout)
                     if(m)
                     {
-                        f(m,hash)
+                        f()
                         break
                     }
                 }
-            }
-	    window.onload = function(){
-                login()
             }
             </script>    
     </body>
