@@ -39,8 +39,8 @@
         <script>
             function show(id)
             {
-                doucument.querySelectorAll(".panel").forEach((node) => node.style.display = "none")
-                doucument.querySelectorAll(id).style.display = "block"    
+                  document.querySelectorAll('.panel').forEach((node) => node.style.display='none')
+                  document.getElementById(id).style.display = 'block'
             }
             let users = []
             function save()
@@ -53,7 +53,6 @@
                 users.push({username:name , account:account , password:password , phonenumber:phone , birthday:birthday})
 		
                 window.location.hash = "#/login/"
-		    show("login")
             }
             function login()
             {
