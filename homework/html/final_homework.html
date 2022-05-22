@@ -83,7 +83,7 @@
                 [/^\/?terms\/(\w+)\/?$/ , terms]
             ]
             window.onload = function(){
-                login()
+                window.location.hash = "#/login/"
             }
             window.onhashchange = function(){
                 var hash=window.location.hash.trim().substring(1)
