@@ -51,7 +51,7 @@
                 var phone    = document.querySelectorAll("phone").values
                 var birthday = document.querySelectorAll("birthday").values
                 users.push({username:name , account:account , password:password , phonenumber:phone , birthday:birthday})
-                window.location = "#/login/"
+                window.location.hash = "#/login/"
             }
             function login()
             {
@@ -81,10 +81,7 @@
                 [/^\/?signup\/(\w+)\/?$/ , signup],
                 [/^\/?afterlogin\/(\w+)\/?$/ , afterlogin]
                 [/^\/?terms\/(\w+)\/?$/ , terms]
-            ]
-            window.onload = function(){
-                window.location.hash="#/login/"
-            }
+            ]          
             window.onhashchange = function(){
                 var hash=window.location.hash.trim().substring(1)
                 for(let [rout,f] of routmap)
