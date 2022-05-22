@@ -4,7 +4,7 @@
         <style>
             .interface
             {
-	        text-align:center;
+	            text-align:center;
                 border:5px blue solid;
                 padding:15px 10px;
             }
@@ -15,11 +15,88 @@
         <section class="interface">
             <div class="panel" id="login">
                 <h1>Login</h1>
+                <p>Account  :<input type="text" name="loginname" ></p>
                 <p>Account  :<input type="text" name="loginaccount" ></p>
                 <p>Password :<input type="text" name="loginpassword"></p>
                 <p><input type="button" value="Login"  ></p>
-                <p><input type="button" value="Sign_up"><a href="https://markerpen92.github.io/wp110b/homework/html/fianlhomework_signup.html"></p>
+                <p><a href="#/signup/">signup</a></p>
+            </div>
+            <div class="panel" id="signup">
+                <h1>Sign In</h1>
+                <p>Username       :<input type="text" name="username"  placeholder="Sign up your username"></p>
+                <p>Account        :<input type="text" name="account"   placeholder="_ @ _ .com"           ></p>
+                <p>Password       :<input type="text" name="password"  placeholder=""                     ></p>
+                <p>Phone number   :<input type="text" name="phone"     placeholder=""                     ></p>
+                <p>Your birthday  :<input type="text" name="birthday"  placeholder="EX:19920318"          ></p>
+                <p>I agree<input type="checkbox" name="check"><a href="#/terms/">terms of service</a></p>
+                <p><input type="button" value="Sign up" onclick="save()"></p>
+            </div>
+            <div class="panel" id="terms">
+                <h1>terms of service</h1>
+                <p>NOTHING</p>
             </div>
         </section>
+        <script>
+            function show(id)
+            {
+                doucument.querySelectorAll(".panel").forEach((node) => node.style.display = "non")
+                doucument.querySelectorAll(id).style.display = "block"    
+            }
+            let users = []
+            function save()
+            {
+                var name     = document.querySelectorAll("username").values
+                var account  = document.querySelectorAll("account").values
+                var password = document.querySelectorAll("password").values
+                var phone    = document.querySelectorAll("phone").values
+                var birthday = document.querySelectorAll("birthday").values
+                users.push({username:name , account:account , password:password , phonenumber:phone , birthday:birthday})
+                window.location = "#/login/"
+            }
+            function login()
+            {
+                show("login")
+                var username = doucument.querySelectorAll("loginname").values
+                var useraccount = doucument.querySelectorAll("loginaccount").values
+                var userpassword = doucument.querySelectorAll("loginpassword").values
+                for(let i=0 ; i<users.length ; i++)
+                {
+                    if(username == users[i].username)
+                    {
+                        if(useraccount==users[i].account && userpassword==users[i].password) afterlogin();
+                        else
+                        {
+                            alert("wrong")
+                            doucument.querySelectorAll("loginaccount").values = ""
+                            doucument.querySelectorAll("loginpassword").values = ""
+                        }
+                    }
+                }
+            }
+            function afterlogin(){}
+            function signup(){ show("signup") }
+            function terms(){}
+            let routmap = [
+                [/^\/?login\/(\w+)\/?$/  , login],
+                [/^\/?signup\/(\w+)\/?$/ , signup],
+                [/^\/?afterlogin\/(\w+)\/?$/ , afterlogin]
+                [/^\/?terms\/(\w+)\/?$/ , terms]
+            ]
+            window.onload = function(){
+                window.location.hash="#/login/"
+            }
+            window.onhashchange = function(){
+                var hash=window.location.hash.trim().substring(1)
+                for(let [rout,f] of routmap)
+                {
+                    m=hash.match(rout)
+                    if(m)
+                    {
+                        f()
+                        break
+                    }
+                }
+            }
+            </script>    
     </body>
 </html>
