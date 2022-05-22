@@ -51,8 +51,9 @@
                 var phone    = document.querySelectorAll("phone").values
                 var birthday = document.querySelectorAll("birthday").values
                 users.push({username:name , account:account , password:password , phonenumber:phone , birthday:birthday})
-		show("login")
+		
                 window.location.hash = "#/login/"
+		    show("login")
             }
             function login()
             {
