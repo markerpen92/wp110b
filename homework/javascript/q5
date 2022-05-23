@@ -1,0 +1,9 @@
+function average(a){
+    var total =0
+    for(var i=0 ; i<a.length ; i++){
+        total+=a[i]
+    }
+    return total/a.length
+}
+
+console.log(average([1,2,3,4,5]))
