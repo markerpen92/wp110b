@@ -1,0 +1,12 @@
+var product={
+    a: function(e){
+        var answer=1;
+        for(var i=1 ; i<=e ; i++){
+            answer*=i
+        }
+        return answer
+    }   
+}
+
+var n=parseInt(Deno.args[0])
+console.log(product.a(n))
