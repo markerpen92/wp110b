@@ -1,0 +1,18 @@
+var answer
+function caculate(value)
+{
+    answer = []
+    var count=0
+    for(let i=2 ; i<=value ; i++)
+    {
+        if(value%i==0)
+        {
+            answer[count] = i
+            value/=i
+            count++
+            i=2
+        }
+    }
+    return answer
+}
+console.log(caculate(45))
