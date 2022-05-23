@@ -1,0 +1,18 @@
+var intputA=parseInt(Deno.args[0])
+var intputB=parseInt(Deno.args[1])
+var storage=[]
+var storageidx=0
+var count=0
+function check(a,b){
+    for(var i=intputA ; i<=intputB ; i++)
+    {
+        count=0;
+        if(i%3==0 || i%5==0 || i%7==0) count++
+        if(count==0) {
+            storage[storageidx]=i
+            storageidx++
+        }
+    }
+}
+check(intputA,intputB)
+console.log(storage)
