@@ -1,0 +1,10 @@
+var input=parseInt(Deno.args[0])
+var count=0;
+function check(number){
+    for(var i=2 ; i<input ; i++){
+        if(input%i==0)count++
+    }
+}
+check(input)
+if(count==0) console.log("Ture")
+else console.log("false")
