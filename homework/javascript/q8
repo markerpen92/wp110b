@@ -1,0 +1,17 @@
+function add(v1,v2)
+{
+    var r=[]
+    if(v1.length==v2.length)
+    {
+        for(let i=0 ; i<v1.length ; i++)
+        {
+            r[i] = v1[i]+v2[i]
+        }
+        return r
+    }
+    else return -1
+}
+
+v1=[1,2,3]
+v2=[3,2,1]
+console.log(add(v1,v2))
