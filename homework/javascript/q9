@@ -1,0 +1,6 @@
+function f(stop)
+{
+    if(stop == 1 || stop==2) return 1
+    else return f(stop-1)+f(stop-2)
+}
+console.log(f(7))
