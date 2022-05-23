@@ -1,0 +1,12 @@
+function integral(f,a,b)
+{
+    var answer=0
+    var n=0.0000001
+    for(let i=a;i<b;i+=n)
+    {
+        answer+=f(i)*n
+    }
+    return answer
+}
+
+console.log(integral((x)=>x*x, 0, 1))
