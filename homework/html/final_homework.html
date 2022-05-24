@@ -13,59 +13,59 @@
 
     <body>
         <section>
-            <div class="panel" id="login">
+            <div class="panel" id="login"> <!--製作一個登入的介面-->
                 <h1>Login</h1>
-                <p>Account  :<input type="text" name="loginname" ></p>
+                <p>Username  :<input type="text" name="loginname" ></p>
                 <p>Account  :<input type="text" name="loginaccount" ></p>
                 <p>Password :<input type="text" name="loginpassword"></p>
-                <p><input type="button" value="Login"  ></p>
-                <p><a href="#/signup/">signup</a></p>
+                <p><input type="button" value="Login" onclick="afterlogin()"></p>
+
+                <p><input type="button" value="SignUp" onclick="signup()"></p>
             </div>
-            <div class="panel" id="signup">
+            <div class="panel" id="signup"> <!--製作一個註冊的介面-->
                 <h1>Sign In</h1>
-                <p>Username       :<input type="text" name="username"  placeholder="Sign up your username"></p>
-                <p>Account        :<input type="text" name="account"   placeholder="_ @ _ .com"           ></p>
-                <p>Password       :<input type="text" name="password"  placeholder=""                     ></p>
-                <p>Phone number   :<input type="text" name="phone"     placeholder=""                     ></p>
-                <p>Your birthday  :<input type="text" name="birthday"  placeholder="EX:19920318"          ></p>
+                <p>Username       :<input type="text" id="username"  placeholder="Sign up your username"></p>
+                <p>Account        :<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
+                <p>Password       :<input type="text" id="password"  placeholder=""                     ></p>
+                <p>Phone number   :<input type="text" id="phone"     placeholder=""                     ></p>
                 <p>I agree<input type="checkbox" name="check"><a href="#/terms/">terms of service</a></p>
-                <p><input type="button" value="Sign up" onclick="save()"></p>
+                <p><input type="button" value="Save" onclick="save()"></p>
             </div>
-            <div class="panel" id="terms">
+            <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
                 <h1>terms of service</h1>
                 <p>NOTHING</p>
             </div>
         </section>
         <script>
-            function show(id)
+            function show(id) //參考老師上禮拜五的show函式，讓hashchange時能夠隱藏其他panel
             {
-                  document.querySelectorAll('.panel').forEach((node) => node.style.display='none')
-                  document.getElementById(id).style.display = 'block'
+                document.querySelectorAll('.panel').forEach((node) => node.style.display='none')
+                document.getElementById(id).style.display = 'block'    
             }
-            let users = []
-            function save()
+            let users = []//當作一個資料庫來儲存使用者的帳號密碼
+            function save() //註冊完成後儲存
             {
-                var name     = document.querySelectorAll("username").values
-                var account  = document.querySelectorAll("account").values
-                var password = document.querySelectorAll("password").values
-                var phone    = document.querySelectorAll("phone").values
-                var birthday = document.querySelectorAll("birthday").values
-                users.push({username:name , account:account , password:password , phonenumber:phone , birthday:birthday})
-		
+                var name = document.querySelectorAll("username").value
+                var account = document.querySelectorAll("account").value
+                var password = document.querySelectorAll("password").value
+                var phone = document.querySelectorAll("phone").value
+                users.push({username:name , account:account , password:password , phonenumber:phone})
+                
                 window.location.hash = "#/login/"
-            }
-            function login()
-            {
                 show("login")
-                var username = doucument.querySelectorAll("loginname").values
-                var useraccount = doucument.querySelectorAll("loginaccount").values
-                var userpassword = doucument.querySelectorAll("loginpassword").values
-                for(let i=0 ; i<users.length ; i++)
+            }
+            function afterlogin() //檢查使用者登入時輸入的帳號密碼
+            {
+                var username = document.querySelectorAll("loginname").value
+                var useraccount = document.querySelectorAll("loginaccount").value
+                var userpassword = document.querySelectorAll("loginpassword").value
+
+                for(let i=0 ; i<=users.length ; i++) //比對使用者輸入的帳號密碼是否正確
                 {
                     if(username == users[i].username)
                     {
-                        if(useraccount==users[i].account && userpassword==users[i].password) afterlogin();
-                        else
+                        if(useraccount==users[i].account && userpassword==users[i].password) alert("IN") //當登入成功時
+                        else //登入失敗時
                         {
                             alert("wrong")
                             doucument.querySelectorAll("loginaccount").values = ""
@@ -74,8 +74,7 @@
                     }
                 }
             }
-            function afterlogin(){}
-            function signup(){ show("signup") }
+            function signup(){ show("signup") } //註冊帳號
             function terms(){}
             let routmap = [
                 [/^\/?login\/(\w+)\/?$/  , login]
@@ -84,13 +83,14 @@
                 [/^\/?terms\/(\w+)\/?$/ , terms]
             ]
             window.onload = function(){
+                show("login")
                 window.location.hash = "#/login/"
             }
             window.onhashchange = function(){
                 var hash=window.location.hash.trim().substring(1)
                 for(let [rout,f] in routmap)
                 {
-                    m=hash.match(rout)
+                    var m=hash.match(rout)
                     if(m)
                     {
                         f()
