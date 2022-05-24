@@ -19,7 +19,7 @@
                 <p>Account  :<input type="text" name="loginaccount" ></p>
                 <p>Password :<input type="text" name="loginpassword"></p>
                 <p><input type="button" value="Login" onclick="afterlogin()"></p>
-
+                <p><a href="#/signup/">signup</a></p>
                 <p><input type="button" value="SignUp" onclick="signup()"></p>
             </div>
             <div class="panel" id="signup"> <!--製作一個註冊的介面-->
@@ -52,7 +52,7 @@
                 users.push({username:name , account:account , password:password , phonenumber:phone})
                 
                 window.location.hash = "#/login/"
-                show("login")
+                //show("login")
             }
             function afterlogin() //檢查使用者登入時輸入的帳號密碼
             {
@@ -74,16 +74,25 @@
                     }
                 }
             }
-            function signup(){ show("signup") } //註冊帳號
-            function terms(){}
+            function signup() //註冊帳號
+            { 
+                show("signup")
+                window.location.hash="#/signup/"
+            }
+            function login()
+            {
+                show("login")
+                window.location.hash="#/login/"
+            }
+            function terms(){show("terms")}
             let routmap = [
-                [/^\/?login\/(\w+)\/?$/  , login]
-                [/^\/?signup\/(\w+)\/?$/ , signup]
-                [/^\/?afterlogin\/(\w+)\/?$/ , afterlogin]
-                [/^\/?terms\/(\w+)\/?$/ , terms]
+                [/^\/?login\/(\w+)\/?$/  , login],
+                [/^\/?signup\/(\w+)\/?$/ , signup],
+                [/^\/?afterlogin\/(\w+)\/?$/ , afterlogin],
+                [/^\/?terms\/(\w+)\/?$/ , terms],
             ]
             window.onload = function(){
-                show("login")
+                //show("login")
                 window.location.hash = "#/login/"
             }
             window.onhashchange = function(){
