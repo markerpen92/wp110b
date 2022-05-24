@@ -20,6 +20,7 @@
                 <p>Password :<input type="text" name="loginpassword"></p>
                 <p><input type="button" value="Login" onclick="afterlogin()"></p>
                 <p><a href="#/signup/">signup</a></p>
+                <!--<p><input type="button" value="SignUp" onclick="signup()"></p>-->
             </div>
             <div class="panel" id="signup"> <!--製作一個註冊的介面-->
                 <h1>Sign In</h1>
@@ -33,6 +34,7 @@
             <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
                 <h1>terms of service</h1>
                 <p>NOTHING</p>
+                <p><a href="#/signup/">Back to Signup</a></p>
             </div>
         </section>
         <script>
@@ -85,18 +87,18 @@
             }
             function terms(){show("terms")}
             let routmap = [
-                [/^\/?login\/(\w+)\/?$/  , login],
-                [/^\/?signup\/(\w+)\/?$/ , signup],
-                [/^\/?afterlogin\/(\w+)\/?$/ , afterlogin],
-                [/^\/?terms\/(\w+)\/?$/ , terms],
+                [/^\/?login\/?$/  , login],
+                [/^\/?signup\/?$/ , signup],
+                [/^\/?afterlogin\/?$/ , afterlogin],
+                [/^\/?terms\/?$/ , terms]
             ]
             window.onload = function(){
-                //show("login")
+                show("login")
                 window.location.hash = "#/login/"
             }
             window.onhashchange = function(){
                 var hash=window.location.hash.trim().substring(1)
-                for(let [rout,f] in routmap)
+                for(let [rout,f] of routmap)
                 {
                     var m=hash.match(rout)
                     if(m)
