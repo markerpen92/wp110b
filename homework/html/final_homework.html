@@ -15,9 +15,9 @@
         <section>
             <div class="panel" id="login"> <!--製作一個登入的介面-->
                 <h1>Login</h1>
-                <p>Username  :<input type="text" name="loginname" ></p>
-                <p>Account  :<input type="text" name="loginaccount" ></p>
-                <p>Password :<input type="text" name="loginpassword"></p>
+                <p>Username  :<input type="text" id="loginname" ></p>
+                <p>Account  :<input type="text" id="loginaccount" ></p>
+                <p>Password :<input type="text" id="loginpassword"></p>
                 <p><input type="button" value="Login" onclick="afterlogin()"></p>
                 <p><a href="#/signup/">signup</a></p>
                 <!--<p><input type="button" value="SignUp" onclick="signup()"></p>-->
@@ -28,7 +28,7 @@
                 <p>Account        :<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
                 <p>Password       :<input type="text" id="password"  placeholder=""                     ></p>
                 <p>Phone number   :<input type="text" id="phone"     placeholder=""                     ></p>
-                <p>I agree<input type="checkbox" name="check"><a href="#/terms/">terms of service</a></p>
+                <p>I agree<input type="checkbox" id="check"><a href="#/terms/">terms of service</a></p>
                 <p><input type="button" value="Save" onclick="save()"></p>
             </div>
             <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
@@ -46,43 +46,72 @@
             let users = []//當作一個資料庫來儲存使用者的帳號密碼
             function save() //註冊完成後儲存
             {
-                var name = document.querySelectorAll("username").value
-                var account = document.querySelectorAll("account").value
+                var name = document.getElementById('username').value
+                var account = document.getElementById("account").value
                 var password = document.querySelectorAll("password").value
                 var phone = document.querySelectorAll("phone").value
-                users.push({username:name , account:account , password:password , phonenumber:phone})
-                
-                window.location.hash = "#/login/"
+                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g))
+                {
+                    var c= document.getElementById("check").checked
+                    if(c)
+                    {
+                        users.push({username:name , account:account , password:password , phonenumber:phone})    
+                        window.location.hash = "#/login/"
+                    }
+                    else
+                    {
+                        alert("Accept service of terms please")
+                    }
+                }
+                else
+                {
+                    alert("Wrong account")
+                    document.getElementById("username").value = ""
+                    document.getElementById("account").value = ""
+                    document.getElementById("password").value = ""
+                    document.getElementById("phone").value = ""
+                }                    
                 //show("login")
             }
             function afterlogin() //檢查使用者登入時輸入的帳號密碼
             {
-                var username = document.querySelectorAll("loginname").value
-                var useraccount = document.querySelectorAll("loginaccount").value
-                var userpassword = document.querySelectorAll("loginpassword").value
-
-                for(let i=0 ; i<users.length ; i++) //比對使用者輸入的帳號密碼是否正確
-                {
+                var username = document.getElementById("loginname").value
+                var useraccount = document.getElementById("loginaccount").value
+                var userpassword = document.getElementById("loginpassword").value
+                for(let i=0 ; i<users.length ; i++)
+                {  //比對使用者輸入的帳號密碼是否正確
                     if(username == users[i].username)
                     {
-                        if(useraccount==users[i].account && userpassword==users[i].password) alert("IN") //當登入成功時
+                        if(useraccount==users[i].account && userpassword==users[i].password)
+                        {
+                            alert("IN") //當登入成功時
+                        }
                         else //登入失敗時
                         {
                             alert("wrong")
-                            doucument.querySelectorAll("loginaccount").values = ""
-                            doucument.querySelectorAll("loginpassword").values = ""
                         }
-                    }
+                        document.getElementById("loginname").value     = ""
+                        document.getElementById("loginaccount").value  = ""
+                        document.getElementById("loginpassword").value = ""
+                    }                   
                 }
             }
             function signup() //註冊帳號
             { 
                 show("signup")
+                document.getElementById("username").value = ""
+                document.getElementById("account").value = ""
+                document.getElementById("password").value = ""
+                document.getElementById("phone").value = ""
+                document.getElementById("check").checked = false
                 window.location.hash="#/signup/"
             }
             function login()
             {
                 show("login")
+                document.getElementById("loginname").value     = ""
+                document.getElementById("loginaccount").value  = ""
+                document.getElementById("loginpassword").value = ""
                 window.location.hash="#/login/"
             }
             function terms(){show("terms")}
