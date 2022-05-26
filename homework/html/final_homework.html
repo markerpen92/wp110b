@@ -46,10 +46,10 @@
             let users = []//當作一個資料庫來儲存使用者的帳號密碼
             function save() //註冊完成後儲存
             {
-                var name = document.getElementById('username').value
-                var account = document.getElementById("account").value
-                var password = document.querySelectorAll("password").value
-                var phone = document.querySelectorAll("phone").value
+                var name     = document.getElementById('username').value
+                var account  = document.getElementById("account" ).value
+                var password = document.getElementById("password").value
+                var phone    = document.getElementById("phone"   ).value
                 if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g))
                 {
                     var c= document.getElementById("check").checked
@@ -67,9 +67,9 @@
                 {
                     alert("Wrong account")
                     document.getElementById("username").value = ""
-                    document.getElementById("account").value = ""
+                    document.getElementById("account" ).value = ""
                     document.getElementById("password").value = ""
-                    document.getElementById("phone").value = ""
+                    document.getElementById("phone"   ).value = ""
                 }                    
                 //show("login")
             }
@@ -78,39 +78,54 @@
                 var username = document.getElementById("loginname").value
                 var useraccount = document.getElementById("loginaccount").value
                 var userpassword = document.getElementById("loginpassword").value
+                //alert(username)
+                //alert(useraccount)
+                //alert(userpassword)
                 for(let i=0 ; i<users.length ; i++)
                 {  //比對使用者輸入的帳號密碼是否正確
-                    if(username == users[i].username)
+                    if(i == users.length-1)
                     {
-                        if(useraccount==users[i].account && userpassword==users[i].password)
+                        if(username == users[i].username)
                         {
-                            alert("IN") //當登入成功時
-                        }
-                        else //登入失敗時
+                            //alert(users[i].account)
+                            //alert(users[i].password)
+                            if(useraccount==users[i].account && userpassword==users[i].password)
+                            {
+                                alert("IN") //當登入成功時
+                            }
+                            else 
+                            {
+                                alert("wrong") //登入失敗時
+                            }
+                            document.getElementById("loginname").value     = ""
+                            document.getElementById("loginaccount").value  = ""
+                            document.getElementById("loginpassword").value = ""
+                        }  
+                        else
                         {
-                            alert("wrong")
-                        }
-                        document.getElementById("loginname").value     = ""
-                        document.getElementById("loginaccount").value  = ""
-                        document.getElementById("loginpassword").value = ""
-                    }                   
+                            alert("Wrong username!")
+                            document.getElementById("loginname").value     = ""
+                            document.getElementById("loginaccount").value  = ""
+                            document.getElementById("loginpassword").value = ""
+                        }     
+                    }                                
                 }
             }
             function signup() //註冊帳號
             { 
                 show("signup")
                 document.getElementById("username").value = ""
-                document.getElementById("account").value = ""
+                document.getElementById("account" ).value = ""
                 document.getElementById("password").value = ""
-                document.getElementById("phone").value = ""
-                document.getElementById("check").checked = false
+                document.getElementById("phone"   ).value = ""
+                document.getElementById("check"   ).checked = false
                 window.location.hash="#/signup/"
             }
             function login()
             {
                 show("login")
-                document.getElementById("loginname").value     = ""
-                document.getElementById("loginaccount").value  = ""
+                document.getElementById("loginname"    ).value     = ""
+                document.getElementById("loginaccount" ).value  = ""
                 document.getElementById("loginpassword").value = ""
                 window.location.hash="#/login/"
             }
