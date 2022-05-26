@@ -1,0 +1,2 @@
+這隻程式參考了https://gitlab.com/ccc110/wp/-/blob/master/11-app/blog/vanillaBlog.html
+其他內容皆來自原創
