@@ -65,7 +65,7 @@
                     }
                     else
                     {
-                        alert("Accept service of terms please")
+                        alert("Accept terms of service please")
                     }
                 }
                 else
