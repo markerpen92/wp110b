@@ -6,7 +6,11 @@
             {
 	            text-align:center;
                 border:5px blue solid;
+                border-width: 10px;
                 padding:15px 10px;
+                font-size: 1em;
+                height: 300px;
+                width: 300px;
             }
         </style>
     </head>
@@ -15,21 +19,22 @@
         <section>
             <div class="panel" id="login"> <!--製作一個登入的介面-->
                 <h1>Login</h1>
-                <p>Username  :<input type="text" id="loginname" ></p>
-                <p>Account  :<input type="text" id="loginaccount" ></p>
-                <p>Password :<input type="text" id="loginpassword"></p>
+                <p>Username  :&nbsp;&nbsp;<input type="text" id="loginname" ></p>
+                <p>Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
+                <p>Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
                 <p><input type="button" value="Login" onclick="afterlogin()"></p>
                 <p><a href="#/signup/">signup</a></p>
                 <!--<p><input type="button" value="SignUp" onclick="signup()"></p>-->
             </div>
             <div class="panel" id="signup"> <!--製作一個註冊的介面-->
                 <h1>Sign In</h1>
-                <p>Username       :<input type="text" id="username"  placeholder="Sign up your username"></p>
-                <p>Account        :<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
-                <p>Password       :<input type="text" id="password"  placeholder=""                     ></p>
-                <p>Phone number   :<input type="text" id="phone"     placeholder=""                     ></p>
+                <p>Username  :&nbsp;&nbsp;<input type="text" id="username"  placeholder="Sign up your username"></p>
+                <p>Account   :&nbsp;&nbsp;<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
+                <p>Password  :&nbsp;&nbsp;<input type="text" id="password"  placeholder=""                     ></p>
+                <p>Phone     :&nbsp;&nbsp;<input type="text" id="phone"     placeholder=""                     ></p>
                 <p>I agree<input type="checkbox" id="check"><a href="#/terms/">terms of service</a></p>
                 <p><input type="button" value="Save" onclick="save()"></p>
+                <p><input type="button" value="Back" onclick="login()"></p>                
             </div>
             <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
                 <h1>terms of service</h1>
