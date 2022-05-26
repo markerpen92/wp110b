@@ -55,7 +55,7 @@
                 var account  = document.getElementById("account" ).value
                 var password = document.getElementById("password").value
                 var phone    = document.getElementById("phone"   ).value
-                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g))
+                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g) && name!="" && account!="" && password!="" && phone!="")
                 {
                     var c= document.getElementById("check").checked
                     if(c)
@@ -70,7 +70,7 @@
                 }
                 else
                 {
-                    alert("Wrong account")
+                    alert("Your Enter must be something wrong")
                     document.getElementById("username").value = ""
                     document.getElementById("account" ).value = ""
                     document.getElementById("password").value = ""
