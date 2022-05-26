@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>Sign In</title>
+        <style>
+            body
+            {
+	            text-align:center;
+                border:5px blue solid;
+                border-width: 10px;
+                padding:15px 10px;
+                font-size: 1em;
+                height: 300px;
+                width: 300px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <section>
+            <div class="panel" id="login"> <!--製作一個登入的介面-->
+                <h1>Login</h1>
+                <p>Username  :&nbsp;&nbsp;<input type="text" id="loginname" ></p>
+                <p>Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
+                <p>Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
+                <p><input type="button" value="Login" onclick="afterlogin()"></p>
+                <p><a href="#/signup/">signup</a></p>
+                <!--<p><input type="button" value="SignUp" onclick="signup()"></p>-->
+            </div>
+            <div class="panel" id="signup"> <!--製作一個註冊的介面-->
+                <h1>Sign In</h1>
+                <p>Username  :&nbsp;&nbsp;<input type="text" id="username"  placeholder="Sign up your username"></p>
+                <p>Account   :&nbsp;&nbsp;<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
+                <p>Password  :&nbsp;&nbsp;<input type="text" id="password"  placeholder=""                     ></p>
+                <p>Phone     :&nbsp;&nbsp;<input type="text" id="phone"     placeholder=""                     ></p>
+                <p>I agree<input type="checkbox" id="check"><a href="#/terms/">terms of service</a></p>
+                <p><input type="button" value="Save" onclick="save()"></p>
+                <p><input type="button" value="Back" onclick="login()"></p>                
+            </div>
+            <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
+                <h1>terms of service</h1>
+                <p>NOTHING</p>
+                <p><a href="#/signup/">Back to Signup</a></p>
+            </div>
+        </section>
+        <script>
+            function show(id) //參考老師上禮拜五的show函式，讓hashchange時能夠隱藏其他panel
+            {
+                document.querySelectorAll('.panel').forEach((node) => node.style.display='none')
+                document.getElementById(id).style.display = 'block'    
+            }
+            let users = []//當作一個資料庫來儲存使用者的帳號密碼
+            function save() //註冊完成後儲存
+            {
+                var name     = document.getElementById('username').value
+                var account  = document.getElementById("account" ).value
+                var password = document.getElementById("password").value
+                var phone    = document.getElementById("phone"   ).value
+                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g))
+                {
+                    var c= document.getElementById("check").checked
+                    if(c)
+                    {
+                        users.push({username:name , account:account , password:password , phonenumber:phone})    
+                        window.location.hash = "#/login/"
+                    }
+                    else
+                    {
+                        alert("Accept service of terms please")
+                    }
+                }
+                else
+                {
+                    alert("Wrong account")
+                    document.getElementById("username").value = ""
+                    document.getElementById("account" ).value = ""
+                    document.getElementById("password").value = ""
+                    document.getElementById("phone"   ).value = ""
+                }                    
+                //show("login")
+            }
+            function afterlogin() //檢查使用者登入時輸入的帳號密碼
+            {
+                var username = document.getElementById("loginname").value
+                var useraccount = document.getElementById("loginaccount").value
+                var userpassword = document.getElementById("loginpassword").value
+                //alert(username)
+                //alert(useraccount)
+                //alert(userpassword)
+                for(let i=0 ; i<users.length ; i++)
+                {  //比對使用者輸入的帳號密碼是否正確
+                    if(i == users.length-1)
+                    {
+                        if(username == users[i].username)
+                        {
+                            //alert(users[i].account)
+                            //alert(users[i].password)
+                            if(useraccount==users[i].account && userpassword==users[i].password)
+                            {
+                                alert("IN") //當登入成功時
+                            }
+                            else 
+                            {
+                                alert("wrong") //登入失敗時
+                            }
+                            document.getElementById("loginname").value     = ""
+                            document.getElementById("loginaccount").value  = ""
+                            document.getElementById("loginpassword").value = ""
+                        }  
+                        else
+                        {
+                            alert("Wrong username!")
+                            document.getElementById("loginname").value     = ""
+                            document.getElementById("loginaccount").value  = ""
+                            document.getElementById("loginpassword").value = ""
+                        }     
+                    }                                
+                }
+            }
+            function signup() //註冊帳號
+            { 
+                show("signup")
+                document.getElementById("username").value = ""
+                document.getElementById("account" ).value = ""
+                document.getElementById("password").value = ""
+                document.getElementById("phone"   ).value = ""
+                document.getElementById("check"   ).checked = false
+                window.location.hash="#/signup/"
+            }
+            function login()
+            {
+                show("login")
+                document.getElementById("loginname"    ).value     = ""
+                document.getElementById("loginaccount" ).value  = ""
+                document.getElementById("loginpassword").value = ""
+                window.location.hash="#/login/"
+            }
+            function terms(){show("terms")}
+            let routmap = [
+                [/^\/?login\/?$/  , login],
+                [/^\/?signup\/?$/ , signup],
+                [/^\/?afterlogin\/?$/ , afterlogin],
+                [/^\/?terms\/?$/ , terms]
+            ]
+            window.onload = function(){
+                show("login")
+                window.location.hash = "#/login/"
+            }
+            window.onhashchange = function(){
+                var hash=window.location.hash.trim().substring(1)
+                for(let [rout,f] of routmap)
+                {
+                    var m=hash.match(rout)
+                    if(m)
+                    {
+                        f()
+                        break
+                    }
+                }
+            }
+            </script>    
+    </body>
+</html>
