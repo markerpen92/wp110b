@@ -1,8 +1,9 @@
-var text = "Name:Mark,Age:18,Weight:80,Email:mark1122@gmail.com"
+ var text = "Name:Mark,Age:18,Weight:80,Email:mark1122@gmail.com"
  let re = /[0-9a-z]+/g
  let re2 = /[\w/@/.]+/g
  let re2A = /\w+[/@/.]+\w+([/./\w]+)/g 
- let re3 = /:\w+/g
+ let re3 = /\w+\@(\w+\.){1,}(\w+){1,}/g  ///:\w+/g
+ let re4 = /\:\w+(\@(\w+\.){1,}(\w+){1,}){0,1}/g
  console.log( text.match(re))
  console.log(text.match(re2))
  console.log(text.match(re2A))
@@ -11,11 +12,10 @@ var text = "Name:Mark,Age:18,Weight:80,Email:mark1122@gmail.com"
  let m;
  let array_re4 = []
  var count = 0
- while((m=re3.exec(text))!=null) // m = (re3.exec()!=null)
+ while((m=re4.exec(text))!=null) // m = (re3.exec()!=null)
  {
     console.log('m=', m)
-    array_re4[count]=m[1];
-    count++;
+    array_re4[count]=m[0];
+    count++
  }
-
 console.log(array_re4)
