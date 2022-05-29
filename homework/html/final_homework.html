@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Sign In</title>
+        <title id="bookmark">Sign In</title>
         <style>
             body
             {
@@ -8,9 +8,10 @@
                 border:5px blue solid;
                 border-width: 10px;
                 padding:15px 10px;
-                font-size: 1em;
-                height: 300px;
-                width: 300px;
+                font-size:2em;
+                height: 600px;
+                width: 500px;
+                margin: 30 auto 0 auto;
             }
         </style>
     </head>
@@ -19,12 +20,11 @@
         <section>
             <div class="panel" id="login"> <!--製作一個登入的介面-->
                 <h1>Login</h1>
-                <p>Username  :&nbsp;&nbsp;<input type="text" id="loginname" ></p>
-                <p>Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
-                <p>Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
-                <p><input type="button" value="Login" onclick="afterlogin()"></p>
-                <p><a href="#/signup/">signup</a></p>
-                <!--<p><input type="button" value="SignUp" onclick="signup()"></p>-->
+                <p id="login_name">Username  :&nbsp;&nbsp;<input type="text" id="loginname" ></p>
+                <p id="login_account">Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
+                <p id="login_password">Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
+                <p><input type="button" value="Login" onclick="afterlogin()" id="login_button"></p>
+                <p id="login_to_signup"><a href="#/signup/">signup</a></p>
             </div>
             <div class="panel" id="signup"> <!--製作一個註冊的介面-->
                 <h1>Sign In</h1>
@@ -41,9 +41,14 @@
                 <p>NOTHING</p>
                 <p><a href="#/signup/">Back to Signup</a></p>
             </div>
+            <div class="panel" id="inside">
+                <h1 id="inside_title">Welcome</h1>
+                <p>NOfriend</p>
+                <p><input type="button" value="Logout" onclick="login()"></p>
+            </div>
         </section>
         <script>
-            function show(id) //參考老師上禮拜五的show函式，讓hashchange時能夠隱藏其他panel
+            function show(id)
             {
                 document.querySelectorAll('.panel').forEach((node) => node.style.display='none')
                 document.getElementById(id).style.display = 'block'    
@@ -55,7 +60,7 @@
                 var account  = document.getElementById("account" ).value
                 var password = document.getElementById("password").value
                 var phone    = document.getElementById("phone"   ).value
-                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g) && name!="" && account!="" && password!="" && phone!="")
+                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g) && name!="" && account!="" && password!="" && phone.match(/09[0-9]{8}/g))
                 {
                     var c= document.getElementById("check").checked
                     if(c)
@@ -75,28 +80,23 @@
                     document.getElementById("account" ).value = ""
                     document.getElementById("password").value = ""
                     document.getElementById("phone"   ).value = ""
+                    document.getElementById("check"   ).checked = false
                 }                    
-                //show("login")
             }
             function afterlogin() //檢查使用者登入時輸入的帳號密碼
             {
                 var username = document.getElementById("loginname").value
                 var useraccount = document.getElementById("loginaccount").value
                 var userpassword = document.getElementById("loginpassword").value
-                //alert(username)
-                //alert(useraccount)
-                //alert(userpassword)
                 for(let i=0 ; i<users.length ; i++)
                 {  //比對使用者輸入的帳號密碼是否正確
                     if(i == users.length-1)
                     {
                         if(username == users[i].username)
                         {
-                            //alert(users[i].account)
-                            //alert(users[i].password)
                             if(useraccount==users[i].account && userpassword==users[i].password)
                             {
-                                alert("IN") //當登入成功時
+                                inside() //當登入成功時
                             }
                             else 
                             {
@@ -119,6 +119,7 @@
             function signup() //註冊帳號
             { 
                 show("signup")
+                document.getElementById("bookmark").innerHTML="Sign Up"
                 document.getElementById("username").value = ""
                 document.getElementById("account" ).value = ""
                 document.getElementById("password").value = ""
@@ -129,11 +130,18 @@
             function login()
             {
                 show("login")
-                document.getElementById("loginname"    ).value     = ""
-                document.getElementById("loginaccount" ).value  = ""
+                document.getElementById("bookmark").innerHTML="Sign In"
+                document.getElementById("loginname"    ).value = ""
+                document.getElementById("loginaccount" ).value = ""
                 document.getElementById("loginpassword").value = ""
                 window.location.hash="#/login/"
             }
+            function inside()
+            {
+                document.getElementById("inside_title").innerHTML="Welcome  "+document.getElementById("loginname").value
+                show("inside")
+                document.getElementById("bookmark").innerHTML="Welcome"
+            }           
             function terms(){show("terms")}
             let routmap = [
                 [/^\/?login\/?$/  , login],
@@ -141,11 +149,13 @@
                 [/^\/?afterlogin\/?$/ , afterlogin],
                 [/^\/?terms\/?$/ , terms]
             ]
-            window.onload = function(){
+            window.onload = function()
+            {
                 show("login")
                 window.location.hash = "#/login/"
             }
-            window.onhashchange = function(){
+            window.onhashchange = function()
+            {
                 var hash=window.location.hash.trim().substring(1)
                 for(let [rout,f] of routmap)
                 {
