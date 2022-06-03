@@ -44,6 +44,7 @@
             <div class="panel" id="inside">
                 <h1 id="inside_title">Welcome</h1>
                 <p>NOfriend</p>
+                <p><a href="finalhomework_inside.html">Talking with markerpen</a></p>
                 <p><input type="button" value="Logout" onclick="login()"></p>
             </div>
         </section>
@@ -140,6 +141,7 @@
             {
                 document.getElementById("inside_title").innerHTML="Welcome  "+document.getElementById("loginname").value
                 show("inside")
+                window.location.hash="#/inside/"
                 document.getElementById("bookmark").innerHTML="Welcome"
             }           
             function terms(){show("terms")}
