@@ -1,3 +1,4 @@
 這隻程式參考了https://gitlab.com/ccc110/wp/-/blob/master/11-app/blog/vanillaBlog.html
+             https://ccckmit.github.io/aibook/htm/eliza.html
 其他內容皆來自原創
 而這支程式是一個sign_up/in的網頁，但是其中不包含登入後的畫面，如果使用者登入成功畫面會顯示"in"失敗的話則會顯示"wrong"
