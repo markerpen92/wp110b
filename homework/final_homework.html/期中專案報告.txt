@@ -11,3 +11,4 @@
   然後npc是模仿Eliza做出一個簡單的對話，其中主要利用一個專門對話和回答的資料庫來讀取使用者的輸入後進行回答。
   
 使用方式可以看一下連結
+https://www.youtube.com/watch?v=MIkb1AghQLA
