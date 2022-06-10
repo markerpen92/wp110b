@@ -79,10 +79,17 @@
             function talking()
             {
                 var user_talk = document.getElementById("user_talk").value
-                showdialog(user_talk)
-                var npc_talk = npc_answer(user_talk)
-                showdialog("Mark : " + npc_talk)
-                document.getElementById("user_talk").value = ""
+                if(user_talk=="")
+                {
+                    alert("Please Enter something")
+                }
+                else
+                {
+                    showdialog(user_talk)
+                    var npc_talk = npc_answer(user_talk)
+                    showdialog("Mark : " + npc_talk)
+                    document.getElementById("user_talk").value = ""
+                }
             }
             function showdialog(talk)
             {
@@ -112,6 +119,7 @@
                                 var counter = 0;
                                 for(let k=0 ; k<a_List[random].length ; k++)
                                 {
+                                    alert("12")
                                     if(a_List[random][k]=="*")
                                     {
                                         talk = talk.RegExp.$2
