@@ -13,7 +13,6 @@
                 width: 500px;
                 margin: 30 auto 0 auto;
             }
-            
             #chat_room
             {
                 text-align:left
@@ -110,8 +109,6 @@
                 var userpassword = document.getElementById("loginpassword").value
                 for(let i=0 ; i<users.length ; i++)
                 {  //比對使用者輸入的帳號密碼是否正確
-                    if(i == users.length-1)
-                    {
                         if(username == users[i].username)
                         {
                             if(useraccount==users[i].account && userpassword==users[i].password)
@@ -125,15 +122,15 @@
                             document.getElementById("loginname").value     = ""
                             document.getElementById("loginaccount").value  = ""
                             document.getElementById("loginpassword").value = ""
+                            break
                         }  
-                        else
+                        else if(i==users.length-1 && username!=users[i].username)
                         {
                             alert("Wrong username!")
                             document.getElementById("loginname").value     = ""
                             document.getElementById("loginaccount").value  = ""
                             document.getElementById("loginpassword").value = ""
-                        }     
-                    }                                
+                        }                                    
                 }
             }
             function signup() //註冊帳號
