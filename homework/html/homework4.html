@@ -13,6 +13,7 @@ div
 </head>
 
 <body>
+<section>
 <div>
 <h1>
 Sign up
@@ -31,13 +32,19 @@ Sign up
 </p>
 <p>
 	<input type="checkbox" name="check">
-    I agree!
-    <a href="#">閱讀條款</a>
+    I dont't agree!
+    <a href="#" onclick="warning()">閱讀條款</a>
 </p>
 <p>
 	<input type="button" name="submit" value="送出">
 </p>
 </div>
 </body>
-
+</section>
+<script>
+warning()
+	{
+		alert("You need to accept 閱讀條款")
+	}
+</script>
 </html>
