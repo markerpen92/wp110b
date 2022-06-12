@@ -97,7 +97,7 @@
                 chat_room.innerHTML += talk+"<br/>\n"
                 chat_room.scrollTop = chat_room.scrollHeight
             }
-            function npc_answer(talk)
+           function npc_answer(talk)
             {
                 for(let i=0 ; i<qaList.length ; i++)
                 { 
@@ -116,19 +116,37 @@
                             else if(q_List[j]!=talk && talk.match(r))
                             {
                                 var random = Math.floor(Math.random()*a_List.length)
-                                var counter = 0;
-                                for(let k=0 ; k<a_List[random].length ; k++)
+                                alert(a_List.length)
+                                var counter = talk.length
+                                for(let k=0 ; k<=a_List[random].length ; k++)
                                 {
+                                    alert(a_List[random][k])
                                     if(a_List[random][k]=="*")
                                     {
-                                        talk = talk.RegExp.$2
-                                        var answerB = talk.replace("我", "#").replace("你", "我").replace("#", "你")
+                                        var noun = [];
+                                        for(let y=counter-3 ; y<counter ; y++)
+                                        {
+                                            noun+=talk[y]
+                                        }
+                                        alert(noun)
                                         var answerA = []
                                         for(let d=0 ; d<k ; d++)
                                         {
                                             answerA+=a_List[random][d]
                                         }
-                                        return answerA+answerB
+                                        /*var answering = talk.replace("我",answerA)
+                                        alert(answering)*/
+                                        if(answerA[answerA.length-1] == noun[0])
+                                        {
+                                            alert("in")
+                                            var accurate_noun = []
+                                            for(let s=1 ; s<noun.length ; s++)
+                                            {
+                                                accurate_noun+=noun[s]
+                                            }
+                                            return answerA+accurate_noun
+                                        }
+                                        return answerA+noun
                                     }
                                 }
                                 return a_List[random]
