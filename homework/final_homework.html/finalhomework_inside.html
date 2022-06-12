@@ -4,7 +4,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         <title>Welcome</title>
         <style>
-            body
+            .panel
             {
 	            text-align:center;
                 border:5px blue solid;
@@ -23,18 +23,20 @@
     </head>
     <body>
         <section>
-            <div>
-                <p>Talk : <input type="text" id="user_talk" onkeydown="keyin(event)"></p>             
-                <!--<input type="button" value="Submit" onclick="talking()">-->
-            </div>
-            <br/>
-            <div id="chat_room" style="width: 500px;; height: 350px; overflow:auto; border:ridge 1px #888888; ">
-                Mark : 您好!<BR/>  
-            </div>
-            <br/>
-            <div>
-                <input type="button" value="Logout" onclick="location_change()"/>
-            </div>
+            <div class="panel">
+                <div>
+                    <p>Talk : <input type="text" id="user_talk" onkeydown="keyin(event)"></p>             
+                    <!--<input type="button" value="Submit" onclick="talking()">-->
+                </div>
+                <br/>
+                <div id="chat_room" style="width: 500px;; height: 350px; overflow:auto; border:ridge 1px #888888; ">
+                    Mark : 您好!<BR/>  
+                </div>
+                <br/>
+                <div>
+                    <input type="button" value="Logout" onclick="location_change()"/>
+                </div>
+            </div>     
         </section>
         <script type="text/javascript">
             var qaList = [
@@ -97,7 +99,7 @@
                 chat_room.innerHTML += talk+"<br/>\n"
                 chat_room.scrollTop = chat_room.scrollHeight
             }
-           function npc_answer(talk)
+            function npc_answer(talk)
             {
                 for(let i=0 ; i<qaList.length ; i++)
                 { 
@@ -116,11 +118,9 @@
                             else if(q_List[j]!=talk && talk.match(r))
                             {
                                 var random = Math.floor(Math.random()*a_List.length)
-                                alert(a_List.length)
                                 var counter = talk.length
                                 for(let k=0 ; k<=a_List[random].length ; k++)
                                 {
-                                    alert(a_List[random][k])
                                     if(a_List[random][k]=="*")
                                     {
                                         var noun = [];
@@ -128,7 +128,6 @@
                                         {
                                             noun+=talk[y]
                                         }
-                                        alert(noun)
                                         var answerA = []
                                         for(let d=0 ; d<k ; d++)
                                         {
@@ -138,14 +137,23 @@
                                         alert(answering)*/
                                         if(answerA[answerA.length-1] == noun[0])
                                         {
-                                            alert("in")
                                             var accurate_noun = []
                                             for(let s=1 ; s<noun.length ; s++)
                                             {
                                                 accurate_noun+=noun[s]
                                             }
+                                            if(a_List[random][a_List[random].length-1]=="?")
+                                            {
+                                                accurate_noun+="?"
+                                            }
+                                            accurate_noun=accurate_noun.replace("我","#").replace("你","我").replace("#","你")
                                             return answerA+accurate_noun
                                         }
+                                        if(a_List[random][a_List[random].length-1]=="?")
+                                        {
+                                            noun+="?"
+                                        }
+                                        noun=noun.replace("我","#").replace("你","我").replace("#","你")
                                         return answerA+noun
                                     }
                                 }
