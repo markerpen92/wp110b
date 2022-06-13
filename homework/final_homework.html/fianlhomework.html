@@ -23,10 +23,10 @@
                 border:5px black solid;
                 font-size:20px;
                 border-width: 5px;
-                height: 430px;
+                height: 460px;
                 width: 350px;
                 float: right;
-                margin-right: 20pxs;
+                margin-right: 25pxs;
             }
             .Signin_panel
             {
@@ -92,8 +92,8 @@
                     <p>Password  :&nbsp;&nbsp;<input type="text" id="password"  placeholder=""                     ></p>
                     <p>Phone     :&nbsp;&nbsp;<input type="text" id="phone"     placeholder=""                     ></p>
                     <p>I agree<input type="checkbox" id="check"><a href="#/terms/">terms of service</a></p>
-                    <p><input type="button" value="Save" onclick="save()" style="float:right; margin-right: 150px;" id="signup_button"></p>
-                    <p><input type="button" value="Back" onclick="login()" style="float:left; margin-left : 150px;"  id="signup_button"></p>    
+                    <p><input type="button" value="Save" onclick="save()" style="float:right; margin-right: 140px;" id="signup_button"></p>
+                    <p><input type="button" value="Back" onclick="login()" style="float:left; margin-left : 140px;"  id="signup_button"></p>    
                 </div> 
             </div>
             <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
@@ -101,8 +101,8 @@
                 <p>NOTHING</p>
                 <p><a href="#/signup/">Back to Signup</a></p>
             </div>
-            <div class="panel" id="inside">
-                <h1 id="inside_title">Welcome</h1>
+            <div class="panel" id="inside" style="padding-right: 10px;">
+                <h1 id="inside_title" style="margin-bottom: 5px;">Welcome</h1>
                 <hr/>
                 <p><input type="button" value="Add Friend" onclick="Add_friend()" id="left_button"></p>
                 <div class="show_friend">
@@ -113,18 +113,16 @@
             </div>
             <div id="npc" class="panel">
                 <div>
-                    <p>Talk : <input type="text" id="user_talk" onkeydown="keyin(event)"></p>             
+                    <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
                     <!--<input type="button" value="Submit" onclick="talking()">-->
                 </div>
-                <br/>
-                <div id="chat_room" style="width: 500px;; height: 350px; overflow:auto; border:ridge 1px #888888; ">
+                <div id="chat_room" style="width: 480px;; height: 445px; overflow:auto; border:ridge 5px #888888; margin: 5px; margin-top: 25px;">
                     Mark : 您好!<BR/>  
                 </div>
-                <br/>
                 <div>
-                    <input type="button" value="Back" onclick="inside()">
+                    <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
                 </div>
-            </div>     
+            </div>       
         </section>
         <script>
             function show(id)
