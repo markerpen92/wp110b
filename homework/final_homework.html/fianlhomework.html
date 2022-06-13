@@ -211,9 +211,18 @@
                 document.getElementById("loginpassword").value = ""
                 window.location.hash="#/login/"
             }
+            var welcome_username;
             function inside()
             {
                 document.getElementById("inside_title").innerHTML="-Welcome  "+document.getElementById("loginname").value+"-"
+                if(document.getElementById("loginname").value=="")
+                {
+                    document.getElementById("inside_title").innerHTML="-Welcome  "+welcome_username+"-"
+                }
+                else
+                {
+                    welcome_username=document.getElementById("loginname").value
+                }
                 show("inside")
                 window.location.hash="#/inside/"
                 document.getElementById("bookmark").innerHTML="Welcome"
