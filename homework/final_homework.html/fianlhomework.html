@@ -4,7 +4,7 @@
         <style>
             body
             {
-	            text-align:center;
+	        text-align:center;
                 border:5px blue solid;
                 border-width: 10px;
                 padding:15px 10px;
@@ -16,6 +16,25 @@
             #chat_room
             {
                 text-align:left
+            }
+	    .show_friend
+            {
+                text-align:center;
+                border:5px black solid;
+                font-size:20px;
+                border-width: 5px;
+                height: 430px;
+                width: 350px;
+                float: right;
+                margin-right: 20pxs;
+            }
+            #left_button
+            {
+                height: 30px; 
+                margin-top: 20px;
+                margin-left: 15px;
+                float: left;
+                width: 90px;
             }
         </style>
     </head>
@@ -47,9 +66,13 @@
             </div>
             <div class="panel" id="inside">
                 <h1 id="inside_title">Welcome</h1>
-                <p>NOfriend</p>
-                <p><a href="#/npc/">Talking with markerpen</a></p>
-                <p><input type="button" value="Logout" onclick="login()"></p>
+                <hr/>
+                <p><input type="button" value="Add Friend" onclick="Add_friend()" id="left_button"></p>
+                <div class="show_friend">
+                    <h1>-Friend List-</h1>
+                    <ul><a href="#/npc/">MR.Mark</a></ul>
+                </div>
+                <p><input type="button" value="Logout" onclick="login()" id="left_button"></p>
             </div>
             <div id="npc" class="panel">
                 <div>
