@@ -102,7 +102,7 @@
                 <p><a href="#/signup/">Back to Signup</a></p>
             </div>
             <div class="panel" id="inside" style="padding-right: 10px;">
-                <h1 id="inside_title" style="margin-bottom: 5px;">Welcome</h1>
+                <h1 id="inside_title" style="margin-bottom: 5px;">-Welcome-</h1>
                 <hr/>
                 <p><input type="button" value="Add Friend" onclick="Add_friend()" id="left_button"></p>
                 <div class="show_friend">
@@ -213,7 +213,7 @@
             }
             function inside()
             {
-                document.getElementById("inside_title").innerHTML="Welcome  "+document.getElementById("loginname").value
+                document.getElementById("inside_title").innerHTML="-Welcome  "+document.getElementById("loginname").value+"-"
                 show("inside")
                 window.location.hash="#/inside/"
                 document.getElementById("bookmark").innerHTML="Welcome"
