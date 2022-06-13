@@ -4,7 +4,7 @@
         <style>
             body
             {
-	        text-align:center;
+	            text-align:center;
                 border:5px blue solid;
                 border-width: 10px;
                 padding:15px 10px;
@@ -17,7 +17,7 @@
             {
                 text-align:left
             }
-	    .show_friend
+            .show_friend
             {
                 text-align:center;
                 border:5px black solid;
@@ -28,6 +28,27 @@
                 float: right;
                 margin-right: 20pxs;
             }
+            .Signin_panel
+            {
+                float: center;
+                border:5px black solid;
+                margin-top: 50px;
+                margin-left: 22px;
+                border-width: 5px;
+                height: 370px;
+                width: 450px;
+                padding-top: 60px;
+            }
+            .Signup_panel
+            {
+                float: center;
+                border:5px black solid;
+                margin-top: 40px;
+                margin-left: 22px;
+                border-width: 5px;
+                height: 450px;
+                width: 450px;
+            }
             #left_button
             {
                 height: 30px; 
@@ -36,28 +57,44 @@
                 float: left;
                 width: 90px;
             }
+            #signup_button
+            {
+                height: 30px; 
+                width:  70px;
+            }
+            #login_button
+            {
+                height: 30px; 
+                width:  70px;
+            }
         </style>
     </head>
 
     <body>
         <section>
             <div class="panel" id="login"> <!--製作一個登入的介面-->
-                <h1>Login</h1>
-                <p id="login_name">Username  :&nbsp;&nbsp;<input type="text" id="loginname" ></p>
-                <p id="login_account">Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
-                <p id="login_password">Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
-                <p><input type="button" value="Login" onclick="afterlogin()" id="login_button"></p>
-                <p id="login_to_signup"><a href="#/signup/">signup</a></p>
-            </div>
+                <h1 style="margin-bottom:5px ;">-Login-</h1>
+                <hr/>
+                <div class="Signin_panel">
+                    <p id="login_name">Username  :&nbsp;&nbsp;<input type="text" id="loginname" ></p>
+                    <p id="login_account">Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
+                    <p id="login_password" style="padding-bottom:40px">Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
+                    <p><input type="button" value="Login" onclick="afterlogin()" id="login_button" style="float:right; margin-right: 140px; margin-top: 5px;"></p>
+                    <p id="login_to_signup"><input type="button" value="SignIN" style="float:left; margin-left : 140px; margin-top: 5px;" id="login_button" onclick="signup()"></p>
+                </div>
+            </div>       
             <div class="panel" id="signup"> <!--製作一個註冊的介面-->
-                <h1>Sign In</h1>
-                <p>Username  :&nbsp;&nbsp;<input type="text" id="username"  placeholder="Sign up your username"></p>
-                <p>Account   :&nbsp;&nbsp;<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
-                <p>Password  :&nbsp;&nbsp;<input type="text" id="password"  placeholder=""                     ></p>
-                <p>Phone     :&nbsp;&nbsp;<input type="text" id="phone"     placeholder=""                     ></p>
-                <p>I agree<input type="checkbox" id="check"><a href="#/terms/">terms of service</a></p>
-                <p><input type="button" value="Save" onclick="save()"></p>
-                <p><input type="button" value="Back" onclick="login()"></p>                
+                <h1 style="margin-bottom: 10px;">-Sign In-</h1>
+                <hr/>
+                <div class="Signup_panel">
+                    <p>Username  :&nbsp;&nbsp;<input type="text" id="username"  placeholder="Sign in your username"></p>
+                    <p>Account   :&nbsp;&nbsp;<input type="text" id="account"   placeholder="_ @ _ .com"           ></p>
+                    <p>Password  :&nbsp;&nbsp;<input type="text" id="password"  placeholder=""                     ></p>
+                    <p>Phone     :&nbsp;&nbsp;<input type="text" id="phone"     placeholder=""                     ></p>
+                    <p>I agree<input type="checkbox" id="check"><a href="#/terms/">terms of service</a></p>
+                    <p><input type="button" value="Save" onclick="save()" style="float:right; margin-right: 150px;" id="signup_button"></p>
+                    <p><input type="button" value="Back" onclick="login()" style="float:left; margin-left : 150px;"  id="signup_button"></p>    
+                </div> 
             </div>
             <div class="panel" id="terms"> <!--製作閱讀服務條款介面-->
                 <h1>terms of service</h1>
@@ -186,8 +223,13 @@
             function terms(){show("terms")}
             function npc()
             {
+                chat_room.innerHTML=" Mark : 您好!<BR/>"
                 show("npc")
                 window.location.hash="#/npc/"
+            }
+            function Add_friend()
+            {
+                alert("This function is not open yet!")
             }
             let routmap = [
                 [/^\/?login\/?$/  , login],
@@ -336,8 +378,8 @@
                         {}                  
                     }
                 }
-                var random = Math.floor(Math.random()*12)
-                var answer_List = qaList[31].A.split("|")
+                var random = Math.floor(Math.random()*qaList[qaList.length-1].length)
+                var answer_List = qaList[qaList.length-1].A.split("|")
                 return answer_List[random]
             }
             </script>    
