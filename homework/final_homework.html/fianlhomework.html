@@ -346,9 +346,18 @@
                                 {
                                     if(a_List[random][k]=="*")
                                     {
+                                        let y=counter-3 
                                         var noun = [];
-                                        for(let y=counter-3 ; y<counter ; y++)
+                                        if(counter<3)
                                         {
+                                            y=0
+                                        }
+                                        for(; y<counter ; y++)
+                                        {
+                                            if(talk[y]==undefined)
+                                            {
+                                                talk[y]=""
+                                            }
                                             noun+=talk[y]
                                         }
                                         var answerA = []
