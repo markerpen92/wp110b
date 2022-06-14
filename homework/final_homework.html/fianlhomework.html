@@ -80,7 +80,7 @@
                     <p id="login_account">Account   :&nbsp;&nbsp;<input type="text" id="loginaccount" ></p>
                     <p id="login_password" style="padding-bottom:40px">Password  :&nbsp;&nbsp;<input type="text" id="loginpassword"></p>
                     <p><input type="button" value="Login" onclick="afterlogin()" id="login_button" style="float:right; margin-right: 140px; margin-top: 5px;"></p>
-                    <p id="login_to_signup"><input type="button" value="SignIN" style="float:left; margin-left : 140px; margin-top: 5px;" id="login_button" onclick="signup()"></p>
+                    <p id="login_to_signup"><input type="button" value="SignUP" style="float:left; margin-left : 140px; margin-top: 5px;" id="login_button" onclick="signup()"></p>
                 </div>
             </div>       
             <div class="panel" id="signup"> <!--製作一個註冊的介面-->
@@ -142,8 +142,16 @@
                     var c= document.getElementById("check").checked
                     if(c)
                     {
-                        users.push({username:name , account:account , password:password , phonenumber:phone})    
-                        window.location.hash = "#/login/"
+                        if(name.length>=3 && name.length<=8)
+                        {
+                            users.push({username:name , account:account , password:password , phonenumber:phone})    
+                            window.location.hash = "#/login/"
+                        }
+                        else
+                        {
+                            alert("Your username must be 3 to 8 characters")
+                            document.getElementById("username").value = ""
+                        }
                     }
                     else
                     {
@@ -194,12 +202,19 @@
             function signup() //註冊帳號
             { 
                 show("signup")
-                document.getElementById("bookmark").innerHTML="Sign Up"
-                document.getElementById("username").value = ""
-                document.getElementById("account" ).value = ""
-                document.getElementById("password").value = ""
-                document.getElementById("phone"   ).value = ""
-                document.getElementById("check"   ).checked = false
+                if(page_type==0)
+                {
+                    document.getElementById("bookmark").innerHTML="Sign Up"
+                    document.getElementById("username").value = ""
+                    document.getElementById("account" ).value = ""
+                    document.getElementById("password").value = ""
+                    document.getElementById("phone"   ).value = ""
+                    document.getElementById("check"   ).checked = false
+                }
+                else if(page_type==1)
+                {
+                    page_type=0
+                }
                 window.location.hash="#/signup/"
             }
             function login()
@@ -226,8 +241,13 @@
                 show("inside")
                 window.location.hash="#/inside/"
                 document.getElementById("bookmark").innerHTML="Welcome"
-            }           
-            function terms(){show("terms")}
+            }   
+            var page_type=0        
+            function terms()
+            {
+                show("terms")
+                page_type=1
+            }
             function npc()
             {
                 chat_room.innerHTML=" Mark : 您好!<BR/>"
@@ -324,6 +344,10 @@
             }
             function npc_answer(talk)
             {
+                if(talk[talk.length-1]=="阿" || talk[talk.length-1]=="啊" || talk[talk.length-1]=="啦" || talk[talk.length-1]=="呀")
+                {
+                    talk[length-1]=""
+                }
                 for(let i=0 ; i<qaList.length ; i++)
                 { 
                     var q_List = qaList[i].Q.split("|")
