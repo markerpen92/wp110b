@@ -79,7 +79,7 @@
 
     <body>
         <section>
-            <div class="panel" id="login"> <!--製作一個登入的介面-->
+            <div class="panel" id="login" style="margin-bottom:100px ;"> <!--製作一個登入的介面-->
                 <h1 style="margin-bottom:5px ; font-size:2em;">-Login-</h1>
                 <hr/>
                 <div class="Signin_panel">
@@ -117,7 +117,7 @@
                 <p><input type="button" value="Add Friend" onclick="Add_friend()" id="left_button"></p>
                 <div class="show_friend">
                     <h1>-Friend List-</h1>
-                    <ul><a href="#/npc/">MR.Mark</a></ul>
+                    <a href="#/npc/">MR.Mark</a>
                 </div>
                 <p><input type="button" value="Logout" onclick="login()" id="left_button"></p>
             </div>
@@ -147,7 +147,7 @@
                 var account  = document.getElementById("account" ).value
                 var password = document.getElementById("password").value
                 var phone    = document.getElementById("phone"   ).value
-                if(account.match(/\w+[/@/.]+\w+([/./\w]+)/g) && name!="" && account!="" && password!="" && phone.match(/09[0-9]{8}/g))
+                if(account.match(account.match(/\w+(\.\w+){0}\@\w+(\.\w+)+/g)) && name!="" && account!="" && password!="" && phone.match(/09[0-9]{8}/g))
                 {
                     var c= document.getElementById("check").checked
                     if(c)
@@ -170,11 +170,16 @@
                 }
                 else
                 {
-                    alert("Your Enter must be something wrong")
-                    document.getElementById("username").value = ""
-                    document.getElementById("account" ).value = ""
-                    document.getElementById("password").value = ""
-                    document.getElementById("phone"   ).value = ""
+                    if(! account.match(account.match(/\w+(\.\w+){0}\@\w+(\.\w+)+/g)))
+                    {
+                        alert("Your account's form is not allow!")
+                        document.getElementById("account" ).value = ""
+                    }
+                    if(! phone.match(/09[0-9]{8}/g))
+                    {
+                        alert("Your phonenumber's form is not allow!")
+                        document.getElementById("phone"   ).value = ""
+                    }
                     document.getElementById("check"   ).checked = false
                 }                    
             }
@@ -192,8 +197,19 @@
                                 inside() //當登入成功時
                             }
                             else 
-                            {
-                                alert("wrong") //登入失敗時
+                            {//登入失敗時
+                                if(useraccount!=users[i].account && userpassword==users[i].password)
+                                {
+                                    alert("Your account isn't correct")
+                                }
+                                else if(useraccount==users[i].account && userpassword!=users[i].password)
+                                {
+                                    alert("Your password isn't correct")
+                                }
+                                else
+                                {
+                                    alert("Your acount and password both are not correct")
+                                } 
                             }
                             document.getElementById("loginname").value     = ""
                             document.getElementById("loginaccount").value  = ""
@@ -224,6 +240,7 @@
                 else if(page_type==1)
                 {
                     page_type=0
+                    document.getElementById("check"   ).checked = false
                 }
                 window.location.hash="#/signup/"
             }
