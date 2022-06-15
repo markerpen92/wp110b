@@ -56,6 +56,13 @@
                 width: 350px;
                 margin-left: 67px;
             }
+            .Add_frienf_panel
+            {
+                margin-left: 75px;
+                border: 3px black solid;
+                width: 350px;
+                height: 450px;
+            }
             #left_button
             {
                 height: 30px; 
@@ -73,6 +80,18 @@
             {
                 height: 30px; 
                 width:  70px;
+            }
+            #back_inside
+            {
+                margin-top: 20px;
+                width: 60px;
+                height: 28px;
+            }
+            #friend_button
+            {
+                height: 50px; 
+                width:  150px;
+                margin-top: 10px;
             }
         </style>
     </head>
@@ -117,7 +136,9 @@
                 <p><input type="button" value="Add Friend" onclick="Add_friend()" id="left_button"></p>
                 <div class="show_friend">
                     <h1>-Friend List-</h1>
-                    <a href="#/npc/">MR.Mark</a>
+                    <div id="show_friend_detail">
+                        <a href="#/npc/">MR.Mark</a>
+                    </div>
                 </div>
                 <p><input type="button" value="Logout" onclick="login()" id="left_button"></p>
             </div>
@@ -132,6 +153,17 @@
                 <div>
                     <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
                 </div>
+            </div>
+            <div id="Add_Friend" class="panel">
+                <h1 style="margin-bottom:5px ;">-Add Friend-</h1>
+                <hr/>
+                <div class="Add_frienf_panel">
+                    <input type="button" value="Mark-I" id="friend_button" onclick=" Add_friend_inlist('Mark-I')">
+                    <input type="button" value=Mark-XVI" id="friend_button" onclick=" Add_friend_inlist('Mark-XVI')">
+                    <input type="button" value="Mark-XCII" id="friend_button" onclick=" Add_friend_inlist('Mark-XCII')">
+                    <input type="button" value="Markerpen" id="friend_button" onclick=" Add_friend_inlist('Markerpen')">
+                </div>
+                <input type="button" value="Back" id="back_inside" onclick="inside()">
             </div>       
         </section>
         <script>
@@ -154,7 +186,7 @@
                     {
                         if(name.length>=3 && name.length<=8)
                         {
-                            users.push({username:name , account:account , password:password , phonenumber:phone})    
+                            users.push({username:name , account:account , password:password , phonenumber:phone , friend_I:0 , friend_XVI:0 , friend_XCII:0 , friend_markerpen:0})    
                             window.location.hash = "#/login/"
                         }
                         else
@@ -183,6 +215,7 @@
                     document.getElementById("check"   ).checked = false
                 }                    
             }
+            var for_record_insideuser
             function afterlogin() //檢查使用者登入時輸入的帳號密碼
             {
                 var username = document.getElementById("loginname").value
@@ -194,6 +227,7 @@
                         {
                             if(useraccount==users[i].account && userpassword==users[i].password)
                             {
+                                for_record_insideuser = i
                                 inside() //當登入成功時
                             }
                             else 
@@ -256,6 +290,7 @@
             var welcome_username;
             function inside()
             {
+                document.getElementById("show_friend_detail").innerHTML='<a href="#/npc/">MR.Mark</a>'
                 document.getElementById("inside_title").innerHTML="-Welcome  "+document.getElementById("loginname").value+"-"
                 if(document.getElementById("loginname").value=="")
                 {
@@ -264,6 +299,22 @@
                 else
                 {
                     welcome_username=document.getElementById("loginname").value
+                }
+                if(users[for_record_insideuser].friend_I==1)
+                {
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-I</a>'
+                }
+                if(users[for_record_insideuser].friend_XVI==1)
+                {
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XVI</a>'
+                }
+                if(users[for_record_insideuser].friend_XCII==1)
+                {
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XCII</a>'
+                }
+                if(users[for_record_insideuser].friend_markerpen==1)
+                {
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Markerpen</a>'
                 }
                 show("inside")
                 window.location.hash="#/inside/"
@@ -283,13 +334,82 @@
             }
             function Add_friend()
             {
-                alert("This function is not open yet!")
+                var i=users[for_record_insideuser].friend_I + users[for_record_insideuser].friend_XVI + users[for_record_insideuser].friend_XCII + users[for_record_insideuser].friend_markerpen
+                if(i>=4)
+                {
+                    alert("You have enough friend")
+                }
+                else
+                {
+                    show("Add_Friend")
+                    window.location="#/Add_Friend/"
+                }
+            }
+            function Add_friend_inlist(name)
+            {
+                if(name == "Mark-I")
+                {
+                    if(users[for_record_insideuser].friend_I==1)
+                    {
+                        alert(name+" is already your friend")
+                        return
+                    }
+                    else
+                    {
+                        users[for_record_insideuser].friend_I++
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-I</a>'
+                        window.location="#/inside/"
+                    }
+                }
+                if(name == "Mark-XVI")
+                {
+                    if(users[for_record_insideuser].friend_XVI==1)
+                    {
+                        alert(name+" is already your friend")
+                        return
+                    }
+                    else
+                    {
+                        users[for_record_insideuser].friend_XVI++
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XVI</a>'
+                        window.location="#/inside/"
+                    }
+                }
+                if(name == "Mark-XCII")
+                {
+                    if(users[for_record_insideuser].friend_XCII==1)
+                    {
+                        alert(name+" is already your friend")
+                        return
+                    }
+                    else
+                    {
+                        users[for_record_insideuser].friend_XCII++
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XCII</a>'
+                        window.location="#/inside/"
+                    }
+                }
+                if(name == "Markerpen")
+                {
+                    if(users[for_record_insideuser].friend_markerpen==1)
+                    {
+                        alert(name+" is already your friend")
+                        return
+                    }
+                    else
+                    {
+                        users[for_record_insideuser].friend_markerpen++
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Markerpen</a>'
+                        window.location="#/inside/"
+                    }
+                }
             }
             let routmap = [
                 [/^\/?login\/?$/  , login],
                 [/^\/?signup\/?$/ , signup],
                 [/^\/?npc\/?$/ , npc],
-                [/^\/?terms\/?$/ , terms]
+                [/^\/?terms\/?$/ , terms],
+                [/^\/?inside\/?$/ , inside]
             ]
             window.onload = function()
             {
