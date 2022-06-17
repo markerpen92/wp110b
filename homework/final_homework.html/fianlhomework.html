@@ -144,9 +144,9 @@
                 <div class="term_panel">
                     <p>NOTHING</p>
                 </div> 
-                <p  style="margin-top:6px ;"><a href="#/signup/">Back to Signup</a></p>
+                <p  style="margin-top:6px ;"><a href="#/signup/">Back to Signup</a></p> 
             </div>   
-            <div class="panel" id="inside" style="padding-right: 10px;">
+            <div class="panel" id="inside" style="padding-right: 10px;"><!--成功登入之後的使用者介面-->
                 <h1 id="inside_title" style="margin-bottom: 5px;">-Welcome-</h1>
                 <hr/>
                 <p><input type="button" value="Add Friend" onclick="Add_friend()" id="left_button"></p>
@@ -158,7 +158,18 @@
                 </div>
                 <p><input type="button" value="Logout" onclick="login()" id="left_button"></p>
             </div>
-            <div id="npc" class="panel">
+            <div id="Add_Friend" class="panel"><!--讓使用者可以增加朋友-->
+                <h1 style="margin-bottom:5px ;">-Add Friend-</h1>
+                <hr/>
+                <div class="Add_frienf_panel">
+                    <input type="button" value="Mark-I" id="friend_button" onclick=" Add_friend_inlist('Mark-I')">
+                    <input type="button" value=Mark-XVI" id="friend_button" onclick=" Add_friend_inlist('Mark-XVI')">
+                    <input type="button" value="Mark-XCII" id="friend_button" onclick=" Add_friend_inlist('Mark-XCII')">
+                    <input type="button" value="Markerpen" id="friend_button" onclick=" Add_friend_inlist('Markerpen')">
+                </div>
+                <input type="button" value="Back" id="back_inside" onclick="inside()">
+            </div> 
+            <div id="npc" class="panel"><!--與機器人Mark的對話聊天室-->
                 <div>
                     <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
                     <!--<input type="button" value="Submit" onclick="talking()">-->
@@ -170,18 +181,7 @@
                     <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
                 </div>
             </div>
-            <div id="Add_Friend" class="panel">
-                <h1 style="margin-bottom:5px ;">-Add Friend-</h1>
-                <hr/>
-                <div class="Add_frienf_panel">
-                    <input type="button" value="Mark-I" id="friend_button" onclick=" Add_friend_inlist('Mark-I')">
-                    <input type="button" value=Mark-XVI" id="friend_button" onclick=" Add_friend_inlist('Mark-XVI')">
-                    <input type="button" value="Mark-XCII" id="friend_button" onclick=" Add_friend_inlist('Mark-XCII')">
-                    <input type="button" value="Markerpen" id="friend_button" onclick=" Add_friend_inlist('Markerpen')">
-                </div>
-                <input type="button" value="Back" id="back_inside" onclick="inside()">
-            </div> 
-            <div id="npc_I" class="panel">
+            <div id="npc_I" class="panel"><!--與機器人Mark_I的對話聊天室-->
                 <div>
                     <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_I" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
                     <!--<input type="button" value="Submit" onclick="talking()">-->
@@ -193,7 +193,7 @@
                     <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
                 </div>
             </div>
-            <div id="npc_XVI" class="panel">
+            <div id="npc_XVI" class="panel"><!--與機器人Mark_XVI的對話聊天室-->
                 <div>
                     <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_XVI" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
                     <!--<input type="button" value="Submit" onclick="talking()">-->
@@ -205,7 +205,7 @@
                     <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
                 </div>
             </div>
-            <div id="npc_XCII" class="panel">
+            <div id="npc_XCII" class="panel"><!--與機器人Mark_XCII的對話聊天室-->
                 <div>
                     <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_XCII" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
                     <!--<input type="button" value="Submit" onclick="talking()">-->
@@ -217,7 +217,7 @@
                     <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
                 </div>
             </div>
-            <div id="npc_Markerpen" class="panel">
+            <div id="npc_Markerpen" class="panel"><!--與機器人Markerpen的對話聊天室-->
                 <div>
                     <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_Markerpen" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
                     <!--<input type="button" value="Submit" onclick="talking()">-->
@@ -231,7 +231,7 @@
             </div>      
         </section>
         <script>
-            function show(id)
+            function show(id)//透過帶入參數id，顯示特定的畫面
             {
                 document.querySelectorAll('.panel').forEach((node) => node.style.display='none')
                 document.getElementById(id).style.display = 'block'    
@@ -243,12 +243,12 @@
                 var account  = document.getElementById("account" ).value
                 var password = document.getElementById("password").value
                 var phone    = document.getElementById("phone"   ).value
-                if(account.match(account.match(/\w+(\.\w+){0}\@\w+(\.\w+)+/g)) && name!="" && account!="" && password!="" && phone.match(/09[0-9]{8}/g))
+                if(account.match(account.match(/\w+(\.\w+){0}\@\w+(\.\w+)+/g)) && name!="" && account!="" && password!="" && phone.match(/09[0-9]{8}/g))//檢查帳號跟手機號碼有沒有符合格式
                 {
-                    var c= document.getElementById("check").checked
+                    var c= document.getElementById("check").checked//檢查使用閱讀條款
                     if(c)
                     {
-                        if(name.length>=3 && name.length<=8)
+                        if(name.length>=3 && name.length<=8)//檢查使用者名稱長度
                         {
                             users.push({username:name , account:account , password:password , phonenumber:phone , friend_I:0 , friend_XVI:0 , friend_XCII:0 , friend_markerpen:0})    
                             window.location.hash = "#/login/"
@@ -352,7 +352,7 @@
                 window.location.hash="#/login/"
             }
             var welcome_username;
-            function inside()
+            function inside()//當使用者登入到裡面之後
             {
                 document.getElementById("show_friend_detail").innerHTML='<a href="#/npc/">MR.Mark</a>'
                 document.getElementById("inside_title").innerHTML="-Welcome  "+document.getElementById("loginname").value+"-"
@@ -364,7 +364,7 @@
                 {
                     welcome_username=document.getElementById("loginname").value
                 }
-                if(users[for_record_insideuser].friend_I==1)
+                if(users[for_record_insideuser].friend_I==1)//檢查你的朋友數量
                 {
                     document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_I/">Mark-I</a>'
                 }
@@ -384,13 +384,13 @@
                 window.location.hash="#/inside/"
                 document.getElementById("bookmark").innerHTML="Welcome"
             }   
-            var page_type=0        
-            function terms()
+            var page_type=0//解決閱讀服務條款後切回註冊會讓剛才打好的註冊內容消失        
+            function terms()//服務條款頁面
             {
                 show("terms")
                 page_type=1
             }
-            function Add_friend()
+            function Add_friend()//增加朋友功能
             {
                 var i=users[for_record_insideuser].friend_I + users[for_record_insideuser].friend_XVI + users[for_record_insideuser].friend_XCII + users[for_record_insideuser].friend_markerpen
                 if(i>=4)
@@ -403,7 +403,7 @@
                     window.location="#/Add_Friend/"
                 }
             }
-            function Add_friend_inlist(name)
+            function Add_friend_inlist(name)//1.比對想要加的朋友是不是已經加過了 2.讓加過的朋友可以顯示在朋友清單裡面
             {
                 if(name == "Mark-I")
                 {
@@ -462,7 +462,7 @@
                     }
                 }
             }
-            var ai_type = 0
+            var ai_type = 0 //為了知道使用者現在和誰對話中
             function npc()
             {
                 chat_room.innerHTML=" Mark : 您好!<BR/>"
@@ -499,7 +499,7 @@
                 window.location.hash="#/npc_Markerpen/"
                 ai_type = 4
             }
-            let routmap = [
+            let routmap = [ 
                 [/^\/?login\/?$/  , login],
                 [/^\/?signup\/?$/ , signup],
                 [/^\/?npc\/?$/ , npc],
@@ -725,7 +725,7 @@
             { Q:"", A:"我了解|我能理解|還有問題嗎 ?|請繼續說下去|可以說的更詳細一點嗎?|這樣喔! 我知道!|然後呢? 發生甚麼事?|再來呢? 可以多說一些嗎|接下來呢? |可以多告訴我一些嗎?|多談談有關你的事，好嗎?|想多聊一聊嗎|可否多告訴我一些呢?"}
             ];  
 
-            function keyin(event)
+            function keyin(event)//檢查你有沒有按下enter
             { 
                 var keyCode = event.which
                 if (keyCode == 13) 
@@ -734,7 +734,7 @@
                     //alert("IN")
                 }
             }
-            function talking()
+            function talking()//接收使用者的輸入，AI的回話，並將兩項展示在聊天室
             {
                 var user_talk = document.getElementById("user_talk").value
                 if(ai_type == 1)
@@ -801,7 +801,7 @@
                     }
                 }
             }
-            function showdialog(talk)
+            function showdialog(talk)//talking的配件，主要讓畫面顯示對話內容
             {
                 var chat_room = document.getElementById("chat_room")
                 if(ai_type == 1)
@@ -823,9 +823,9 @@
                 chat_room.innerHTML += talk+"<br/>\n"
                 chat_room.scrollTop = chat_room.scrollHeight
             }
-            function npc_answer(talk)
+            function npc_answer(talk)//AI接收使用者的對話以後準回傳回復的話
             {
-                if(talk[talk.length-1]=="阿" || talk[talk.length-1]=="啊" || talk[talk.length-1]=="啦" || talk[talk.length-1]=="呀")
+                if(talk[talk.length-1]=="阿" || talk[talk.length-1]=="啊" || talk[talk.length-1]=="啦" || talk[talk.length-1]=="呀")//解決使用者用語助詞
                 {
                     talk[length-1]=""
                 }
@@ -859,10 +859,10 @@
                     
                     for(let j=0 ; j<q_List.length ; j++)
                     {                  
-                        var r = new RegExp("(.*)"+q_List[j]+"([^?.;]*)", "gi")   
+                        var r = new RegExp("(.*)"+q_List[j]+"([^?.;]*)", "gi")//比對使用者說的話然後比對資料庫，輸出一個像樣的回答   
                         try
                         {
-                            if(q_List[j]==talk)
+                            if(q_List[j]==talk)//如果你說的話跟資料庫的內容一模一樣，直接輸出回答
                             {
                                 var random = Math.floor(Math.random()*a_List.length)
                                 return a_List[random]
