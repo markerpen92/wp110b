@@ -17,6 +17,22 @@
             {
                 text-align:left
             }
+            #chat_room_I
+            {
+                text-align:left
+            }
+            #chat_room_XVI
+            {
+                text-align:left
+            }
+            #chat_room_XCII
+            {
+                text-align:left
+            }
+            #chat_room_Markerpen
+            {
+                text-align:left
+            }
             .show_friend
             {
                 text-align:center;
@@ -164,7 +180,55 @@
                     <input type="button" value="Markerpen" id="friend_button" onclick=" Add_friend_inlist('Markerpen')">
                 </div>
                 <input type="button" value="Back" id="back_inside" onclick="inside()">
-            </div>       
+            </div> 
+            <div id="npc_I" class="panel">
+                <div>
+                    <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_I" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
+                    <!--<input type="button" value="Submit" onclick="talking()">-->
+                </div>
+                <div id="chat_room_I" style="width: 480px;; height: 445px; overflow:auto; border:ridge 5px #888888; margin: 5px; margin-top: 25px;">
+                    Mark-I : 您好!<BR/>  
+                </div>
+                <div>
+                    <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
+                </div>
+            </div>
+            <div id="npc_XVI" class="panel">
+                <div>
+                    <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_XVI" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
+                    <!--<input type="button" value="Submit" onclick="talking()">-->
+                </div>
+                <div id="chat_room_XVI" style="width: 480px;; height: 445px; overflow:auto; border:ridge 5px #888888; margin: 5px; margin-top: 25px;">
+                    Mark-XVI : 您好!<BR/>  
+                </div>
+                <div>
+                    <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
+                </div>
+            </div>
+            <div id="npc_XCII" class="panel">
+                <div>
+                    <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_XCII" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
+                    <!--<input type="button" value="Submit" onclick="talking()">-->
+                </div>
+                <div id="chat_room_XCII" style="width: 480px;; height: 445px; overflow:auto; border:ridge 5px #888888; margin: 5px; margin-top: 25px;">
+                    Mark-XCII : 您好!<BR/>  
+                </div>
+                <div>
+                    <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
+                </div>
+            </div>
+            <div id="npc_Markerpen" class="panel">
+                <div>
+                    <p style="font-size:50px ; margin-bottom:10px ; margin-top: 20px;">Talk : <input type="text" id="user_talk_Markerpen" onkeydown="keyin(event)" style="height:50px ; width:170px ; padding:1px; font-size:30px;"></p>             
+                    <!--<input type="button" value="Submit" onclick="talking()">-->
+                </div>
+                <div id="chat_room_Markerpen" style="width: 480px;; height: 445px; overflow:auto; border:ridge 5px #888888; margin: 5px; margin-top: 25px;">
+                    Markerpen : 您好!<BR/>  
+                </div>
+                <div>
+                    <input type="button" value="Back" onclick="inside()" style="width:70px ; height:35px ; margin-top: 5px;">
+                </div>
+            </div>      
         </section>
         <script>
             function show(id)
@@ -302,19 +366,19 @@
                 }
                 if(users[for_record_insideuser].friend_I==1)
                 {
-                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-I</a>'
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_I/">Mark-I</a>'
                 }
                 if(users[for_record_insideuser].friend_XVI==1)
                 {
-                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XVI</a>'
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_XVI/">Mark-XVI</a>'
                 }
                 if(users[for_record_insideuser].friend_XCII==1)
                 {
-                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XCII</a>'
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_XCII/">Mark-XCII</a>'
                 }
                 if(users[for_record_insideuser].friend_markerpen==1)
                 {
-                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Markerpen</a>'
+                    document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_Markerpen/">Markerpen</a>'
                 }
                 show("inside")
                 window.location.hash="#/inside/"
@@ -325,12 +389,6 @@
             {
                 show("terms")
                 page_type=1
-            }
-            function npc()
-            {
-                chat_room.innerHTML=" Mark : 您好!<BR/>"
-                show("npc")
-                window.location.hash="#/npc/"
             }
             function Add_friend()
             {
@@ -357,7 +415,7 @@
                     else
                     {
                         users[for_record_insideuser].friend_I++
-                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-I</a>'
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_I/">Mark-I</a>'
                         window.location="#/inside/"
                     }
                 }
@@ -371,7 +429,7 @@
                     else
                     {
                         users[for_record_insideuser].friend_XVI++
-                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XVI</a>'
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_XVI/">Mark-XVI</a>'
                         window.location="#/inside/"
                     }
                 }
@@ -385,7 +443,7 @@
                     else
                     {
                         users[for_record_insideuser].friend_XCII++
-                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Mark-XCII</a>'
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_XCII/">Mark-XCII</a>'
                         window.location="#/inside/"
                     }
                 }
@@ -399,15 +457,56 @@
                     else
                     {
                         users[for_record_insideuser].friend_markerpen++
-                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc/">Markerpen</a>'
+                        document.getElementById("show_friend_detail").innerHTML+='<br/><br/><a href="#/npc_Markerpen/">Markerpen</a>'
                         window.location="#/inside/"
                     }
                 }
+            }
+            var ai_type = 0
+            function npc()
+            {
+                chat_room.innerHTML=" Mark : 您好!<BR/>"
+                show("npc")
+                window.location.hash="#/npc/"
+                ai_type = 0
+            }
+            function npc_I()
+            {
+                chat_room_I.innerHTML=" Mark-I : ㄟ嗨!<BR/>"
+                show("npc_I")
+                window.location.hash="#/npc_I/"
+                ai_type = 1
+            }
+            function npc_XVI()
+            {
+                chat_room_XVI.innerHTML=" Mark-XVI : 有事情想和我聊天嘛?!<BR/>"
+                show("npc_XVI")
+                window.location.hash="#/npc_XVI/"
+                ai_type = 2
+            }
+            function npc_XCII()
+            {
+                chat_room_XCII.innerHTML=" Mark-XCII : 哈囉!!<BR/>"
+                show("npc_XCII")
+                window.location.hash="#/npc_XCII/"
+                ai_type = 3
+            }
+            function npc_Markerpen()
+            {
+                //alert("IN")
+                chat_room_Markerpen.innerHTML=" Markerpen : 你好啊!<BR/>"
+                show("npc_Markerpen")
+                window.location.hash="#/npc_Markerpen/"
+                ai_type = 4
             }
             let routmap = [
                 [/^\/?login\/?$/  , login],
                 [/^\/?signup\/?$/ , signup],
                 [/^\/?npc\/?$/ , npc],
+                [/^\/?npc_I\/?$/ , npc_I],
+                [/^\/?npc_XVI\/?$/ , npc_XVI],
+                [/^\/?npc_XCII\/?$/ , npc_XCII],
+                [/^\/?npc_Markerpen\/?$/ , npc_Markerpen],
                 [/^\/?terms\/?$/ , terms],
                 [/^\/?inside\/?$/ , inside]
             ]
@@ -470,26 +569,98 @@
             function keyin(event)
             { 
                 var keyCode = event.which
-                if (keyCode == 13) talking()
+                if (keyCode == 13) 
+                {
+                    talking()
+                    //alert("IN")
+                }
             }
             function talking()
             {
                 var user_talk = document.getElementById("user_talk").value
+                if(ai_type == 1)
+                {
+                    user_talk = document.getElementById("user_talk_I").value
+                }
+                else if(ai_type == 2)
+                {
+                    user_talk = document.getElementById("user_talk_XVI").value
+                }
+                else if(ai_type == 3)
+                {
+                    user_talk = document.getElementById("user_talk_XCII").value
+                }
+                else if(ai_type == 4)
+                {
+                    user_talk = document.getElementById("user_talk_Markerpen").value
+                }
+
                 if(user_talk=="")
                 {
                     alert("Please Enter something")
                 }
                 else
-                {
-                    showdialog(user_talk)
+                {       
                     var npc_talk = npc_answer(user_talk)
-                    showdialog("Mark : " + npc_talk)
-                    document.getElementById("user_talk").value = ""
+                    //alert(user_talk)
+                    //alert(npc_talk)
+                    //alert(window.location)
+                    if(ai_type == 0)
+                    {
+                        showdialog(user_talk)
+                        //var npc_talk = npc_answer(user_talk)
+                        showdialog("Mark : " + npc_talk)
+                        document.getElementById("user_talk").value = ""
+                    }
+                    else if(ai_type == 1)
+                    {
+                        showdialog(user_talk)
+                        //var npc_talk = npc_answer(user_talk)
+                        showdialog("Mark-I : " + npc_talk)
+                        document.getElementById("user_talk_I").value = ""
+                    }
+                    else if(ai_type == 2)
+                    {
+                        showdialog(user_talk)
+                        //var npc_talk = npc_answer(user_talk)
+                        showdialog("Mark-XVI : " + npc_talk)
+                        document.getElementById("user_talk_XVI").value = ""
+                    }
+                    else if(ai_type == 3)
+                    {
+                        showdialog(user_talk)
+                        //var npc_talk = npc_answer(user_talk)
+                        showdialog("Mark-XCII : " + npc_talk)
+                        document.getElementById("user_talk_XCII").value = ""
+                    }
+                    else if(ai_type == 4)
+                    {
+                        showdialog(user_talk)
+                        //var npc_talk = npc_answer(user_talk)
+                        showdialog("Markerpen : " + npc_talk)
+                        document.getElementById("user_talk_Markerpen").value = ""
+                    }
                 }
             }
             function showdialog(talk)
             {
                 var chat_room = document.getElementById("chat_room")
+                if(ai_type == 1)
+                {
+                    chat_room = document.getElementById("chat_room_I")
+                }
+                if(ai_type == 2)
+                {
+                    chat_room = document.getElementById("chat_room_XVI")
+                }
+                if(ai_type == 3)
+                {
+                    chat_room = document.getElementById("chat_room_XCII")
+                }
+                if(ai_type == 4)
+                {
+                    chat_room = document.getElementById("chat_room_Markerpen")
+                }
                 chat_room.innerHTML += talk+"<br/>\n"
                 chat_room.scrollTop = chat_room.scrollHeight
             }
@@ -550,6 +721,10 @@
                                             if(a_List[random][a_List[random].length-1]=="?")
                                             {
                                                 accurate_noun+="?"
+                                            }
+                                            if(a_List[random][a_List[random].length-1]=="!")
+                                            {
+                                                accurate_noun+="!"
                                             }
                                             accurate_noun=accurate_noun.replace("我","#").replace("你","我").replace("#","你")
                                             return answerA+accurate_noun
